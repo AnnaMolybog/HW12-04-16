@@ -18,6 +18,7 @@ PRIMARY KEY (id_employee)
 CHARACTER SET utf8 COLLATE utf8_general_ci
 
 3. Выбрать всех начальников и их подчиненных
-SELECT em.name as cheif_name, em.surname as chief_surname, emp.name as subordinate_name, emp.surname as subordinate_surname
-FROM employee as em JOIN employee as emp ON em.id_employee = emp.parent_id
+SELECT em.name as cheif_name, em.surname as chief_surname, pem.position, emp.name as subordinate_name, emp.surname as subordinate_surname, pemp.position
+FROM employee as em JOIN employee as emp ON em.id_employee = emp.parent_id JOIN position as pem ON em.id_position = pem.id_position
+JOIN position as pemp ON emp.id_position = pemp.id_position
 ORDER BY em.id_employee

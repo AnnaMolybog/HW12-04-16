@@ -1,0 +1,23 @@
+1. Создание таблицы position
+CREATE TABLE position (
+id_position INT(4) AUTO_INCREMENT,
+position VARCHAR(35) NOT NULL,
+PRIMARY KEY (id_position)
+)
+CHARACTER SET utf8 COLLATE utf8_general_ci
+
+2. Создание таблицы employee
+CREATE TABLE employee (
+id_employee INT(4) AUTO_INCREMENT,
+name VARCHAR(35) NOT NULL,
+surname VARCHAR(35) NOT NULL,
+id_position INT(4) NOT NULL,
+parent_id INT(4),
+PRIMARY KEY (id_employee)
+)
+CHARACTER SET utf8 COLLATE utf8_general_ci
+
+3. Выбрать всех начальников и их подчиненных
+SELECT em.name as cheif_name, em.surname as chief_surname, emp.name as subordinate_name, emp.surname as subordinate_surname
+FROM employee as em JOIN employee as emp ON em.id_employee = emp.parent_id
+ORDER BY em.id_employee
